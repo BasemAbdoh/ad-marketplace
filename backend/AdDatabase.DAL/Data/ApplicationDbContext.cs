@@ -7,7 +7,7 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
   b.Entity<Category>().HasOne(x=>x.Parent).WithMany(x=>x.Children).HasForeignKey(x=>x.ParentCategoryId).OnDelete(DeleteBehavior.Restrict);
   b.Entity<Ad>().Property(x=>x.Price).HasPrecision(18,2);b.Entity<BusinessItem>().Property(x=>x.Price).HasPrecision(18,2);
   b.Entity<AdTag>().HasKey(x=>new{x.AdId,x.TagId});b.Entity<AdFavorite>().HasKey(x=>new{x.UserId,x.AdId});b.Entity<Follow>().HasKey(x=>new{x.FollowerUserId,x.FollowedUserId});b.Entity<BusinessCategory>().HasIndex(x=>new{x.BusinessId,x.CategoryId}).IsUnique();
-  b.Entity<Rating>().ToTable(t=>t.HasCheckConstraint("CHK_Ratings_NoSelfRating","[UserId] <> [RatedUserId]").HasCheckConstraint("CHK_Ratings_Value","[Value] BETWEEN 1 AND 5"));b.Entity<Follow>().ToTable(t=>t.HasCheckConstraint("CHK_Follows_NoSelf","[FollowerUserId] <> [FollowedUserId]"));
+  b.Entity<Rating>().ToTable(t=>{t.HasCheckConstraint("CHK_Ratings_NoSelfRating","[UserId] <> [RatedUserId]");t.HasCheckConstraint("CHK_Ratings_Value","[Value] BETWEEN 1 AND 5");});b.Entity<Follow>().ToTable(t=>t.HasCheckConstraint("CHK_Follows_NoSelf","[FollowerUserId] <> [FollowedUserId]"));
   b.Entity<Conversation>().HasIndex(x=>new{x.AdId,x.BuyerUserId,x.SellerUserId}).IsUnique();b.Entity<AdImage>().HasIndex(x=>new{x.AdId,x.SortOrder}).IsUnique();b.Entity<Tag>().HasIndex(x=>x.Name).IsUnique();
   b.Entity<Role>().HasData(new Role{Id=1,Name="Admin"},new Role{Id=2,Name="User"});
  }
