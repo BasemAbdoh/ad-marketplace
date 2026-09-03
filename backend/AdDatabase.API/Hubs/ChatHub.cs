@@ -1,0 +1,1 @@
+using Microsoft.AspNetCore.Authorization;using Microsoft.AspNetCore.SignalR;namespace AdDatabase.API.Hubs;[Authorize]public class ChatHub:Hub{public Task JoinConversation(int id)=>Groups.AddToGroupAsync(Context.ConnectionId,$"conversation:{id}");public Task LeaveConversation(int id)=>Groups.RemoveFromGroupAsync(Context.ConnectionId,$"conversation:{id}");}

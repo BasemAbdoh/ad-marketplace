@@ -1,0 +1,1 @@
+import{Injectable}from'@angular/core';import{BehaviorSubject}from'rxjs';@Injectable({providedIn:'root'})export class NotificationService{private subject=new BehaviorSubject<string[]>([]);messages$=this.subject.asObservable();push(m:string){this.subject.next([...this.subject.value,m])}clear(){this.subject.next([])}}

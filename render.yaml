@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: ad-marketplace-api
+    runtime: docker
+    dockerfilePath: ./backend/AdDatabase.API/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+      - key: ASPNETCORE_URLS
+        value: http://+:8080
+      - key: DATABASE_URL
+        sync: false
+      - key: Jwt__Secret
+        generateValue: true
+      - key: FrontendUrl
+        sync: false

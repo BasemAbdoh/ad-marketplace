@@ -1,0 +1,1 @@
+import{Component}from'@angular/core';@Component({selector:'app-footer',standalone:true,template:`<footer class="bg-dark text-white text-center p-4 mt-5">© 2026 سوق الإعلانات — جميع الحقوق محفوظة</footer>`})export class FooterComponent{}

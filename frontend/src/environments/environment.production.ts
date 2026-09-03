@@ -1,0 +1,1 @@
+export const environment={production:true,apiUrl:'https://ad-marketplace-api.onrender.com/api',hubUrl:'https://ad-marketplace-api.onrender.com/hubs/chat',assetUrl:'https://ad-marketplace-api.onrender.com'};

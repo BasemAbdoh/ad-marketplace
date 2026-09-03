@@ -1,0 +1,2 @@
+using AdDatabase.BLL.Interfaces;using AdDatabase.BLL.Models;using Microsoft.AspNetCore.Mvc;
+namespace AdDatabase.API.Controllers;[ApiController,Route("api/users")]public class UsersController(IUnitOfWork uow):ControllerBase{[HttpGet("{id:int}/rating")]public async Task<IActionResult>Rating(int id,CancellationToken ct){var r=await uow.Ratings.ListAsync(x=>x.RatedUserId==id,ct);return Ok(ApiResponse<RatingSummary>.Ok(new(r.Count==0?0:r.Average(x=>x.Value),r.Count)));}}

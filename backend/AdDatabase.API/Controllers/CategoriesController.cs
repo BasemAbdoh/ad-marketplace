@@ -1,0 +1,2 @@
+using AdDatabase.API.DTOs;using AdDatabase.BLL.Interfaces;using AdDatabase.BLL.Models;using Microsoft.AspNetCore.Mvc;
+namespace AdDatabase.API.Controllers;[ApiController,Route("api/categories")]public class CategoriesController(IUnitOfWork uow):ControllerBase{[HttpGet]public async Task<IActionResult>Get(CancellationToken ct){var all=await uow.Categories.ListAsync(null,ct);List<CategoryDto> Build(int? p)=>all.Where(x=>x.ParentCategoryId==p).Select(x=>new CategoryDto(x.Id,x.Name,Build(x.Id))).ToList();return Ok(ApiResponse<List<CategoryDto>>.Ok(Build(null)));}}

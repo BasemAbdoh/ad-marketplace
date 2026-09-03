@@ -1,0 +1,2 @@
+using AdDatabase.API.DTOs;using AdDatabase.BLL.Entities;using AdDatabase.BLL.Models;using AutoMapper;
+namespace AdDatabase.API.Mapping;public class MappingProfile:Profile{public MappingProfile(){CreateMap<RegisterDto,RegisterRequest>();CreateMap<LoginDto,LoginRequest>();CreateMap<CreateAdDto,CreateAdRequest>();CreateMap<UpdateAdDto,UpdateAdRequest>();CreateMap<SendMessageDto,SendMessageRequest>();CreateMap<AdImage,AdImageDto>();CreateMap<Ad,AdDetailsResponseDto>().ForCtorParam("Attributes",o=>o.MapFrom(x=>x.Attributes.ToDictionary(a=>a.Key,a=>a.Value)));}}

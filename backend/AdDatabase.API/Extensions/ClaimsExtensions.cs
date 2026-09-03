@@ -1,0 +1,1 @@
+using System.Security.Claims;namespace AdDatabase.API.Extensions;public static class ClaimsExtensions{public static int UserId(this ClaimsPrincipal u)=>int.TryParse(u.FindFirstValue(ClaimTypes.NameIdentifier),out var id)?id:throw new UnauthorizedAccessException();}
